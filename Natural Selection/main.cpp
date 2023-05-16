@@ -8,8 +8,9 @@ int main() {
 	srand((int)std::time(NULL));
 
 	
+	world.generate_mountains();
 
-	world.fill();
-	world.print();
+	//world.fill();
+	//world.print();
 	std::cerr << "\nDone.\n";
 }

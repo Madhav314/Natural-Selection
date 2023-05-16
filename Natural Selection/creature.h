@@ -1,24 +1,29 @@
 #pragma once
 #include <string>
 
-struct position {
-	int x;
-	int y;
+class creature {
+	public:
+
+		int x;
+		int y;
+		bool eaten;
+		bool alive;
+
+		creature(): x(0), y(0), eaten(false), alive(true){}
+
+		creature(int x, int y, bool eaten, bool alive): x(x), y(y), eaten(eaten), alive(alive)  {}
 };
 
-
-class creature {
+class creatures {
 	public:
 		std::string name;
 		char symbol;
 		int population;
-		std::vector<position> positions;
-		bool eaten;
-
 		int speed;
-		int energy;
+		std::vector<char> terrain;
+		std::vector<creature> species;
 
-		creature() : name("name"), symbol('?'), population(0), eaten(false), speed(1), energy(1) {}
+		creatures() : name("defult"), symbol('d'), population(1), speed(1), terrain(1, ' ') {}
 
-		creature(std::string name, char symbol, int speed, int energy): name(name), symbol(symbol), speed(speed), energy(energy) {}
+
 };

@@ -4,9 +4,11 @@
 #include <vector>
 #include <random>
 #include <ctime>
+#include <cmath>
 #include <string>
 
 #include "creature.h"
+
 
 class world {
 public:
@@ -32,29 +34,45 @@ public:
 	void fill() {
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				map[i][j] = '#';
+				map[i][j] = '~';
 			}
 		}
 	}
 
 	void generate_terrain() {
 		std::cout << "terrain generated" << std::endl;
+		generate_mountains();
 	}
 
 	void generate_mountains() {
-		std::default_random_engine generator;
-		std::binomial_distribution<int> d(10, 0.5F);
-
 		int i;
-		int p[20] = {};
-		int n;
+		int j;
 
-		for (i = 0; i < 100; i++) {
-			n = d(generator);
-			++p[n];
-		}
+		int peek_x = rand() % 230;
+		int peek_y = rand() % 50;
+
+		int range_x = 1;
+		int range_y =1;
+
+		int p[20];
+
 		for (i = 0; i < 20; i++) {
-			std::cout << std::to_string(p[i]/10.0F) << " ";
+			p[i] = (int)(100*(std::exp(-0.1*i) + 0.5));
+		}
+
+		for (i = 0; i < range_y; i++) {
+			for (j = 0; j < range_x; j++) {
+				if (range_x > width - peek_x) {
+					break;
+				}
+				if (p[j] > (rand() % 90)) {
+					map[peek_y + i][peek_x + j] = '@';
+				}
+				range_x++;
+			}
+			if (range_y > height - peek_y) {
+				break;
+			}
 		}
 	}
 

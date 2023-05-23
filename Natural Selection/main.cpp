@@ -8,7 +8,7 @@ int main() {
 	srand((int)std::time(NULL));
 
 	world.fill();
-	world.generate_mountains();
+	world.generate_terrain();
 	world.print();
 	std::cerr << "\nDone.\n";
 }

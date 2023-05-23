@@ -41,39 +41,37 @@ public:
 
 	void generate_terrain() {
 		std::cout << "terrain generated" << std::endl;
-		generate_mountains();
+		generate_mountain();
 	}
 
-	void generate_mountains() {
+	void generate_mountain() {
 		int i;
 		int j;
 
-		int peek_x = rand() % 230;
-		int peek_y = rand() % 50;
+		double gaussian[50][230]{};
 
-		int range_x = 1;
-		int range_y =1;
+		double sigma = 1.0;
+		double r = 2.0 * sigma * sigma;
+		double s = 2.0 * sigma * sigma;
 
-		int p[20];
+		double sum = 0.0;
 
-		for (i = 0; i < 20; i++) {
-			p[i] = (int)(100*(std::exp(-0.1*i) + 0.5));
-		}
-
-		for (i = 0; i < range_y; i++) {
-			for (j = 0; j < range_x; j++) {
-				if (range_x > width - peek_x) {
-					break;
-				}
-				if (p[j] > (rand() % 90)) {
-					map[peek_y + i][peek_x + j] = '@';
-				}
-				range_x++;
-			}
-			if (range_y > height - peek_y) {
-				break;
+		for (i = 0; i < (height / 3); i++) {
+			for (j = 0; j < (width / 3); j++) {
+				r = std::sqrt(i * i + j * j);
+				gaussian[i][j] = (std::exp(-(r * r) / s) / (3.1415926535 * s));
+				sum += gaussian[i][j];
 			}
 		}
+		
+		for (i = 0; i < (height / 3); i++) {
+			for (j = 0; j < (width / 3); j++) {
+				gaussian[i][j] /= sum;
+			}
+		}
+
+
+
 	}
 
 	void place_species(creatures creatures) {

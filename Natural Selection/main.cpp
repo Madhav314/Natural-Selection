@@ -9,6 +9,9 @@ int main() {
 
 	world.fill();
 	world.generate_terrain();
+
+
+
 	world.print();
 	std::cerr << "\nDone.\n";
 }

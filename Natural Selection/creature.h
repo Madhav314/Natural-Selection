@@ -14,14 +14,14 @@ class creature {
 		creature(int x, int y, bool eaten, bool alive): x(x), y(y), eaten(eaten), alive(alive)  {}
 };
 
-class creatures {
+class species {
 	public:
 		std::string name;
 		char symbol;
 		int population;
 		int speed;
 		std::vector<char> terrain;
-		std::vector<creature> species;
+		std::vector<creature> creatures;
 
 		creatures() : name("defult"), symbol('d'), population(1), speed(1), terrain(1, ' ') {}
 

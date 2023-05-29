@@ -42,9 +42,18 @@ public:
 	void generate_terrain() {
 		std::cout << "terrain generated" << std::endl;
 		generate_mountain();
+		generate_mountain();
+		generate_mountain();
+		generate_mountain();
+		generate_mountain();
+		generate_mountain();
+		generate_mountain();
+		generate_mountain();
+		generate_mountain();
+		generate_mountain();
 	}
 
-	void generate_mountain() {
+	void generate_gaussian() {
 		int i;
 		int j;
 
@@ -72,6 +81,25 @@ public:
 
 
 
+	}
+
+
+	//simple function for testing
+	void generate_mountain() {
+		int i;
+		int j;
+
+		int x_pos = rand() % (width - 20);
+		int y_pos = rand() % (height - 20);
+
+		int size_x = rand() % 20 + 5;
+		int size_y = rand() % 20 + 5;
+
+		for (i = x_pos; i < x_pos + size_x; i++) {
+			for (j = y_pos; j < y_pos + size_y; j++) {
+				map[j][i] = '@';
+			}
+		}
 	}
 
 	void place_species(creatures creatures) {

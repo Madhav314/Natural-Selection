@@ -15,7 +15,7 @@ public:
 	const int width = 230;
 	const int height = 50;
 	char map[50][230];
-	std::vector<creatures> all_species;
+	std::vector<species> all_species;
 
 	world(): map {0} {}
 
@@ -102,22 +102,22 @@ public:
 		}
 	}
 
-	void place_species(creatures creatures) {
-		int i;
-		int j;
+	void place_species(species species) {
+		size_t i;
+		size_t j;
 		int x;
 		int y;
 
-		for (i = 0; i < creatures.species.size(); i++) {
+		for (i = 0; i < species.creatures.size(); i++) {
 			x = rand() % width;
 			y = rand() % height;
-			for (j = 0; j < creatures.terrain.size(); j++) {
-				if (map[y][x] == creatures.terrain.at(j)) {
-					map[y][x] = creatures.terrain.at(j);
+			for (j = 0; j < species.terrain.size(); j++) {
+				if (map[y][x] == species.terrain.at(j)) {
+					map[y][x] = species.terrain.at(j);
 					break;
 				}
 			}
-			if (j == creatures.terrain.size()) {
+			if (j == species.terrain.size()) {
 				i--;
 			}
 		}
@@ -125,7 +125,7 @@ public:
 	}
 
 	void place_all_species() {
-		int i;
+		size_t i;
 
 		for (i = 0; i < all_species.size(); i++) {
 

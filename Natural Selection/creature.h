@@ -23,7 +23,7 @@ class species {
 		std::vector<char> terrain;
 		std::vector<creature> creatures;
 
-		creatures() : name("defult"), symbol('d'), population(1), speed(1), terrain(1, ' ') {}
+		species() : name("defult"), symbol('d'), population(0), speed(1), terrain(1, '~') {}
 
 
 };

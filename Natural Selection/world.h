@@ -14,6 +14,7 @@ class world {
 public:
 	const int width = 230;
 	const int height = 50;
+	char bedrock[50][230];
 	char map[50][230];
 	std::vector<species> all_species;
 
@@ -102,43 +103,34 @@ public:
 		}
 	}
 
-	void place_species(species species) {
+	void food() {
+
+	}
+
+	void populate(species s, int n) {
+
 		size_t i;
 		size_t j;
 		int x;
 		int y;
 
-		for (i = 0; i < species.creatures.size(); i++) {
+		for (i = 0; i < n; i++) {
 			x = rand() % width;
 			y = rand() % height;
-			for (j = 0; j < species.terrain.size(); j++) {
-				if (map[y][x] == species.terrain.at(j)) {
-					map[y][x] = species.terrain.at(j);
+			for (j = 0; j < s.terrain.size(); j++) {
+				if (map[y][x] == s.terrain.at(j)) {
+					s.creatures.push_back(creature(x, y));
+					map[y][x] = s.symbol;
 					break;
 				}
 			}
-			if (j == species.terrain.size()) {
-				i--;
-			}
+
 		}
 
 	}
-
-	void place_all_species() {
-		size_t i;
-
-		for (i = 0; i < all_species.size(); i++) {
-
-			place_species(all_species.at(i));
-			
-		}
-	}
-
 
 	void run() {
-		place_all_species();
 		std::cout << "ran" << std::endl;
 	}
-
 
 };

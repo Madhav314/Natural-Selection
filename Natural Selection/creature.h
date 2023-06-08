@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 class creature {
 	public:
@@ -10,6 +9,8 @@ class creature {
 		bool alive;
 
 		creature(): x(0), y(0), eaten(false), alive(true){}
+		
+		creature(int x, int y) : x(x), y(y), eaten(false), alive(true) {}
 
 		creature(int x, int y, bool eaten, bool alive): x(x), y(y), eaten(eaten), alive(alive)  {}
 };
@@ -25,5 +26,6 @@ class species {
 
 		species() : name("defult"), symbol('d'), population(0), speed(1), terrain(1, '~') {}
 
+		species(std::string name, char symbol, int population, int speed) : name(name), symbol(symbol), population(population), speed(speed) {}
 
 };
